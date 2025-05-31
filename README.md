@@ -1,5 +1,7 @@
-vilain
+vilain_openbsd
 ======
+
+Jan Helbling's fork!
 
 Mimic fail2ban with pf for OpenBSD.
 
