@@ -17,7 +17,7 @@ This will put `vilain` script in /usr/local/bin, `vilain.py` in
 
 Install python-3.*
 
-	pkg_add python-3.6.2
+	pkg_add python
 
 
 In pf.conf, add according to your configuration : 
