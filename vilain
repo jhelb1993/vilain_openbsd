@@ -1,0 +1,10 @@
+#!/bin/sh
+# script to launch vilain with the latest python3 version available
+
+PYTHON="/usr/local/bin/python3"
+if [ -x $PYTHON ]; then
+	$PYTHON /usr/local/sbin/vilain.py >/dev/null 2>&1 &
+else
+	echo "Error : no python3 executable found"
+fi
+exit
