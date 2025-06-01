@@ -10,7 +10,7 @@ import socket
 import os
 import gzip
 
-pattern = '(\d+)-(\d+)-(\d+) (\d+):(\d+):(\d+).*Blacklisting (\d+\.\d+\.\d+\.\d+), reason (.*), return'
+pattern = r'(\d+)-(\d+)-(\d+) (\d+):(\d+):(\d+).*Blacklisting (\d+\.\d+\.\d+\.\d+), reason (.*), return'
 regex = re.compile(pattern)
 
 
@@ -107,7 +107,7 @@ all_lines = []
 for i in range(1,100):
     if os.path.exists(f'/var/log/daemon.{i}.gz'.format(i)):
         zp = gzip.GzipFile(filename=f'/var/log/daemon.{i}.gz'.format(i)).readlines()
-        all_lines = zp + all_lines
+        all_lines += zp
 
 all_lines += open('/var/log/daemon','rb').readlines()
 
