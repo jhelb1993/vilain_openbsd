@@ -2,7 +2,7 @@
 # See LICENSE file for copyright and license details.
 #
 # vilain version
-VERSION = 0.7
+VERSION = 0.8.2
 
 # Customize below to fit your system
 # paths
@@ -17,8 +17,10 @@ install:
 	@echo installing script file to ${DESTDIR}${PREFIX}/sbin
 	@cp -f vilain.py ${DESTDIR}${PREFIX}/sbin
 	@cp -f vilainreport.py ${DESTDIR}${PREFIX}/sbin
+	@cp -f vilainctl ${DESTDIR}${PREFIX}/sbin
 	@chmod 755 ${DESTDIR}${PREFIX}/bin/vilain
-	@chmod 755 ${DESTDIR}${PREFIX}/bin/vilainreport
+	@chmod 755 ${DESTDIR}${PREFIX}/sbin/vilainreport
+	@chmod 755 ${DESTDIR}${PREFIX}/sbin/vilainctl
 	@chmod 644 ${DESTDIR}${PREFIX}/sbin/vilain.py
 	@chmod 644 ${DESTDIR}${PREFIX}/sbin/vilainreport.py
 	@echo installing sample config file
@@ -39,6 +41,7 @@ uninstall:
 	@rm -f ${DESTDIR}${PREFIX}/bin/vilainreport
 	@rm -f ${DESTDIR}${PREFIX}/sbin/vilain.py
 	@rm -f ${DESTDIR}${PREFIX}/sbin/vilainreport.py
+	@rm -f ${DESTDIR}${PREFIX}/sbin/vilainctl
 	@echo removing manual page to ${DESTDIR}${MANPREFIX}/
 	@rm -f ${DESTDIR}${MANPREFIX}/vilain.1
 	@echo Remove configuration file manually if you want, located at /etc/vilain.conf

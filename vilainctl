@@ -1,0 +1,22 @@
+#!/bin/ksh
+
+set -A args -- "$@"
+
+ACTION="${args[0]}"
+
+if [ "$ACTION" == "" ];then
+	echo "Usage: vilainctl [list-blocked | unblock IP | block IP | stats]";
+	exit
+elif [ "$ACTION" == "list-blocked" ];then
+	pfctl -t vilain_bruteforce -T show
+	exit
+elif [ "$ACTION" == "unblock" ];then
+	pfctl -t vilain_bruteforce -T delete "${args[1]}"
+	exit
+elif [ "$ACTION" == "block" ];then
+	pfctl -t vilain_burteforce -T add "${args[1]}"
+	exit
+elif [ "$ACTION" == "stats" ];then
+	vilainreport
+	exit
+fi;

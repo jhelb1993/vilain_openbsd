@@ -19,9 +19,21 @@ In pf.conf, add according to your configuration :
     table <vilain_bruteforce> persist
     block quick from <vilain_bruteforce> 
 
-To see banned IP : 
+To see banned IP: 
 
-    pfctl -t vilain_bruteforce -T show
+    vilianctl list-blocked
+
+To unblock a IP:
+    
+    vilainctl unblock [IP_ADDRESS]
+
+To block a IP:
+    
+    vliainctl block [IP_ADDRESS]
+
+To see stats:
+    
+    vilainctl stats
 .RE
 
 .SH LOGS
