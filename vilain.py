@@ -31,7 +31,7 @@ import asyncio
 import time
 
 CONFIGFILE = "/etc/vilain.conf"
-VERSION = "0.8.1"
+VERSION = "0.8.2"
 vilain_table = "vilain_bruteforce"
 LOGFILE = "/var/log/daemon"
 
