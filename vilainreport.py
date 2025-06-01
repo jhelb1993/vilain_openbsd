@@ -101,8 +101,8 @@ def process(m):
 
 
 # parse stdin
-for line in sys.stdin:
-    match = regex.match(line)
+for line in open('/var/log/daemon','rb').readlines():
+    match = regex.match(line.decode())
     if match:
         process(match)
 
@@ -126,6 +126,8 @@ for k, v in tcounters.topitems():
         break
     try:
         ns = socket.gethostbyaddr(k.strip())[0]
+    except KeyboardInterrupt:
+        break
     except:
         ns = '?'
     sys.stdout.write("IP {:16}: {} - {}\n".format(k, v, ns))
