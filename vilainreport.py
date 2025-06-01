@@ -100,7 +100,7 @@ def process(m):
     tcounters.inc(ip)
 
 
-# parse stdin
+# parse /var/log/daemon
 for line in open('/var/log/daemon','rb').readlines():
     match = regex.match(line.decode())
     if match:
@@ -128,6 +128,8 @@ for k, v in tcounters.topitems():
         ns = socket.gethostbyaddr(k.strip())[0]
     except KeyboardInterrupt:
         break
-    except:
+    except IndexError:
+        ns = '?'
+    except IOError:
         ns = '?'
     sys.stdout.write("IP {:16}: {} - {}\n".format(k, v, ns))
