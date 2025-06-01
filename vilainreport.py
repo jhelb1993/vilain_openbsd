@@ -7,6 +7,8 @@ Author : Yax https://blogduyax.madyanne.fr/
 import re
 import sys
 import socket
+import os
+import gzip
 
 pattern = '(\d+)-(\d+)-(\d+) (\d+):(\d+):(\d+).*Blacklisting (\d+\.\d+\.\d+\.\d+), reason (.*), return'
 regex = re.compile(pattern)
@@ -101,7 +103,15 @@ def process(m):
 
 
 # parse /var/log/daemon
-for line in open('/var/log/daemon','rb').readlines():
+all_lines = []
+for i in range(1,100):
+    if os.path.exists(f'/var/log/daemon.{i}.gz'.format(i)):
+        zp = gzip.GzipFile(filename=f'/var/log/daemon.{i}.gz'.format(i)).readlines()
+        all_lines = zp + all_lines
+
+all_lines += open('/var/log/daemon','rb').readlines()
+
+for line in all_lines:
     match = regex.match(line.decode())
     if match:
         process(match)
