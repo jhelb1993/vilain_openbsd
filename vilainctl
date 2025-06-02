@@ -4,10 +4,8 @@ set -A args -- "$@"
 
 ACTION="${args[0]}"
 
-if [ "$ACTION" == "" ];then
-	echo "Usage: vilainctl [list-blocked | unblock IP | block IP | stats]";
-	exit
-elif [ "$ACTION" == "list-blocked" ];then
+
+if [ "$ACTION" == "list-blocked" ];then
 	pfctl -t vilain_bruteforce -T show
 	exit
 elif [ "$ACTION" == "unblock" ];then
@@ -19,4 +17,7 @@ elif [ "$ACTION" == "block" ];then
 elif [ "$ACTION" == "stats" ];then
 	vilainreport
 	exit
-fi;
+else
+	echo "Usage: vilainctl [list-blocked | unblock IP | block IP | stats]";
+	exit
+fi
